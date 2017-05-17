@@ -1774,6 +1774,9 @@ public class Zendesk implements Closeable {
                 Thread.sleep(60 * 1000);
             } else {
                 if (reqInterval > 0) {
+                    if (logger.isDebugEnabled()) {
+                        logger.debug("Fell asleep for {} ms", reqInterval);
+                    }
                     Thread.sleep(reqInterval);
                 }
             }
@@ -2372,7 +2375,7 @@ public class Zendesk implements Closeable {
         private String token = null;
         private String oauthToken = null;
 
-        private Integer minRemainingApiCalls = 100;
+        private Integer minRemainingApiCalls = 200;
         private Integer reqInterval = 6000;
 
         public Builder setMinRemainingApiCalls(Integer minRemainingApiCalls) {
